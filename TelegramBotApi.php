@@ -22,4 +22,32 @@ class TelegramBotApi
         return call_user_func_array(array(BotRequest::class, $name), $arguments);
     }
 
+    public function setWebhook($url)
+    {
+    	if($url == null)
+    		return $this->telegram->deleteWebhook();
+    	else
+    	    return $this->telegram->setWebhook($url);
+    }
+
+    public function setDownloadPath($path)
+    {
+    	return $this->telegram->setDownloadPath($path);
+    }
+
+	public function getDownloadPath()
+	{
+		return $this->telegram->getDownloadPath();
+	}
+
+	public function setUploadPath($path)
+	{
+		return $this->telegram->setUploadPath($path);
+	}
+
+	public function getUploadPath()
+	{
+		return $this->telegram->getUploadPath();
+	}
+
 }
