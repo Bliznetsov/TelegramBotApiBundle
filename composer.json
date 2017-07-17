@@ -6,7 +6,7 @@
   "homepage": "http://ericomgroup.com",
   "minimum-stability": "dev",
   "prefer-stable": true,
-  "version": "dev",
+  "version": "0.0.1",
   "license": "MIT",
   "authors": [
     {
