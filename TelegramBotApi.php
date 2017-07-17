@@ -19,9 +19,7 @@ class TelegramBotApi
 
     public function __call($name, $arguments)
     {
-        if ($this->config['legacy'] === true) {
-	        return call_user_func_array(array(BotRequest::class, $name), $arguments);
-        }
+        return call_user_func_array(array(BotRequest::class, $name), $arguments);
     }
 
 }
