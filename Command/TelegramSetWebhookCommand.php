@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Command;
+namespace TelegramBotApiBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
