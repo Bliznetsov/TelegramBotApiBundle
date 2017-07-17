@@ -1,0 +1,8 @@
+telegram_bot_api_webhook:
+    path:     /telegram-bot/setup-webhook/{secret}
+    defaults: { _controller: TelegramBotApiBundle:Default:setupWebhook, secret: null }
+    
+telegram_bot_api_update:
+    path:     /telegram-bot/update/{secret}
+    defaults: { _controller: TelegramBotApiBundle:Default:update, secret: null }
+

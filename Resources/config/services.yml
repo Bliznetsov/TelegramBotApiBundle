@@ -1,0 +1,7 @@
+services:
+    telegram_bot_api:
+        class: TelegramBotApiBundle\TelegramBotApi
+        arguments: ['@service_container']
+    telegram_bot.my_update_receiver:
+        class: TelegramBotApiBundle\UpdateReceiver\UpdateReceiver
+        arguments: ['@telegram_bot_api', '%telegram_bot_api.config%']
