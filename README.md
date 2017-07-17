@@ -38,25 +38,14 @@ This bundle was designed to just work out of the box. The only thing you have to
 
 telegram_bot_api:
     token: xxxxx:yyyyyyyyyyyyyyyyyyyy
+    bot_name : zzzzzzz
 ```
 
-If you want to use web-hook, add the bundle's routing configuration in app/config/routing.yml :
+If you want to use web-hook, just run tish command:
 
-```yaml
-telegram_bot_api:
-    resource: @TelegramBotApiBundle/Resources/config/routing.yml
+```bash
+$ php bin/console telegram:set:webhook
 
-```
-And add your domain name, url prefix (if needed) and you update receiver service name (a sample update receiver is included) to the configuration file:
-```yaml
-# app/config/config.yml
-
-telegram_bot_api:
-    #...
-    webhook:
-        domain: example.com
-        path_prefix: ~ # you can add prefix, if your web site is not on the root
-        update_receiver: telegram_bot.my_update_receiver # sample update receiver
 ```
 *note: Telegram do not support http, your site should have valid SSL (HTTPS).*
 
