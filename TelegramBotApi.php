@@ -50,4 +50,12 @@ class TelegramBotApi
 		return $this->telegram->getUploadPath();
 	}
 
+	public function changeBot($token, $username)
+	{
+		if(empty($token) or empty($username))
+			throw new \InvalidArgumentException();
+		else
+			$this->telegram = new Telegram($token, $username);
+	}
+
 }
