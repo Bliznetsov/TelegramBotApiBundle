@@ -31,7 +31,7 @@ class TelegramSetWebhookCommand extends ContainerAwareCommand
 		    $url = $io->askQuestion($question);
 	    }
 
-	    $result = $this->getContainer()->get('telegram_bot_api')->setWebhook($url);
+	    $result = $this->getContainer()->get('telegram_bot_api')::setWebhook(['url' => $url]);
 	    if($result->isOk())
 	    {
 	    	$io->success($result->getRawData()['description']);
