@@ -59,7 +59,7 @@ Wherever you have access to the service container :
     $bot = $this->container->get('telegram_bot_api');
 
     // test the API by calling getMe method
-    $user = $bot->getMe();
+    $user = $bot::getMe()->getResult();
 
 ?>
 ```
