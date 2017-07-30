@@ -5,7 +5,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Longman\TelegramBot\Telegram;
 use Longman\TelegramBot\Request as BotRequest;
 
-class TelegramBotApi
+class TelegramBotApi extends BotRequest
 {
     private $config;
     private $telegram;
@@ -15,19 +15,6 @@ class TelegramBotApi
         $this->config = $container->getParameter('telegram_bot_api.config');
 
         $this->telegram = new Telegram($this->config['token'], $this->config['bot_name']);
-    }
-
-    public function __call($name, $arguments)
-    {
-        return call_user_func_array(array(BotRequest::class, $name), $arguments);
-    }
-
-    public function setWebhook($url)
-    {
-    	if($url == null)
-    		return $this->telegram->deleteWebhook();
-    	else
-    	    return $this->telegram->setWebhook($url);
     }
 
     public function setDownloadPath($path)
@@ -52,7 +39,7 @@ class TelegramBotApi
 
 	public function changeBot($token, $username)
 	{
-		if(empty($token) or empty($username))
+		if(empty($token))
 			throw new \InvalidArgumentException();
 		else
 			$this->telegram = new Telegram($token, $username);
