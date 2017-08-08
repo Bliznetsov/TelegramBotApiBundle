@@ -2,3 +2,7 @@ services:
     telegram_bot_api:
         class: TelegramBotApiBundle\TelegramBotApi
         arguments: ['@service_container']
+
+    telegram_bot_api.helper:
+        class: TelegramBotApiBundle\Service\BotHelper
+        arguments: ['@service_container']
