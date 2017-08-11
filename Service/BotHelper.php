@@ -32,7 +32,7 @@ class BotHelper {
 	public function __construct(ContainerInterface $container) {
 		$this->bot = $container->get('telegram_bot_api');
 	}
-
+	
 	/**
 	 * @return mixed
 	 */
@@ -59,6 +59,10 @@ class BotHelper {
 	{
 		if(isset($this->getDecodeInput()['message']['from']))
 			return new User($this->getDecodeInput()['message']['from']);
+		elseif (isset($this->getDecodeInput()['callback_query']['from']))
+			return new User($this->getDecodeInput()['callback_query']['from']);
+		elseif (isset($this->getDecodeInput()['inline_query']['from']))
+			return new User($this->getDecodeInput()['inline_query']['from']);
 		else
 			return false;
 	}
