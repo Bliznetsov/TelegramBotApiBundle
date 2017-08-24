@@ -28,13 +28,17 @@ class BotHelper {
 	 * BotHelper constructor.
 	 *
 	 * @param ContainerInterface $container
+	 *
+	 * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+	 * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
 	 */
 	public function __construct(ContainerInterface $container) {
 		$this->bot = $container->get('telegram_bot_api');
 	}
-	
+
 	/**
 	 * @return mixed
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getDecodeInput()
 	{
@@ -43,6 +47,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Message
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getMessage()
 	{
@@ -54,6 +59,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|User
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getFrom()
 	{
@@ -61,14 +67,13 @@ class BotHelper {
 			return new User($this->getDecodeInput()['message']['from']);
 		elseif (isset($this->getDecodeInput()['callback_query']['from']))
 			return new User($this->getDecodeInput()['callback_query']['from']);
-		elseif (isset($this->getDecodeInput()['inline_query']['from']))
-			return new User($this->getDecodeInput()['inline_query']['from']);
 		else
 			return false;
 	}
 
 	/**
 	 * @return bool|MessageEntity
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getMessageEntity()
 	{
@@ -80,6 +85,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Audio
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getAudio()
 	{
@@ -91,6 +97,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Document
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getDocument()
 	{
@@ -102,6 +109,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Video
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getVideo()
 	{
@@ -113,6 +121,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Voice
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getVoice()
 	{
@@ -124,6 +133,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|VideoNote
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getVideoNote()
 	{
@@ -135,6 +145,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Contact
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getContact()
 	{
@@ -146,6 +157,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Location
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getLocation()
 	{
@@ -157,6 +169,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|Venue
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getVenue()
 	{
@@ -168,6 +181,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|File
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getFile()
 	{
@@ -179,6 +193,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|CallbackQuery
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getCallbackQuery()
 	{
@@ -190,6 +205,7 @@ class BotHelper {
 
 	/**
 	 * @return bool|InlineQuery
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function getInlineQuery()
 	{
