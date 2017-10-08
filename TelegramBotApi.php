@@ -1,5 +1,5 @@
 <?php
-namespace TelegramBotApiBundle;
+namespace EricomGroup\TelegramBotApiBundle;
 
 use Symfony\Component\DependencyInjection\Container;
 use Longman\TelegramBot\Telegram;
