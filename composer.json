@@ -21,9 +21,6 @@
     "longman/telegram-bot": "*"
   },
   "autoload": {
-    "psr-0": {
-      "EricomGroup\\TelegramBotApiBundle": ""
-    }
-  },
-  "target-dir": "TelegramBotApiBundle"
+    "psr-4": { "EricomGroup\\TelegramBotApiBundle\\": "" }
+  }
 }
