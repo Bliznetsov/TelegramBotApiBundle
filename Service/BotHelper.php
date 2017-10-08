@@ -1,6 +1,6 @@
 <?php
 
-namespace TelegramBotApiBundle\Service;
+namespace EricomGroup\TelegramBotApiBundle\Service;
 
 use Longman\TelegramBot\Entities\Audio;
 use Longman\TelegramBot\Entities\CallbackQuery;
