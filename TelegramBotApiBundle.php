@@ -1,6 +1,6 @@
 <?php
 
-namespace TelegramBotApiBundle;
+namespace EricomGroup\TelegramBotApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
