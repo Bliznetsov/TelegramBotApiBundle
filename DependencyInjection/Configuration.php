@@ -1,6 +1,6 @@
 <?php
 
-namespace TelegramBotApiBundle\DependencyInjection;
+namespace EricomGroup\TelegramBotApiBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
