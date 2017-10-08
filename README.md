@@ -23,7 +23,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
             // register the bundle here
-            new TelegramBotApiBundle\TelegramBotApiBundle()
+            new EricomGroup\TelegramBotApiBundle\TelegramBotApiBundle()
         );
     }
 }
