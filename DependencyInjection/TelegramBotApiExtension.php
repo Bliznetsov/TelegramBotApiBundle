@@ -1,6 +1,6 @@
 <?php
 
-namespace TelegramBotApiBundle\DependencyInjection;
+namespace EricomGroup\TelegramBotApiBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
