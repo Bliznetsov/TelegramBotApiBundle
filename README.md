@@ -36,9 +36,21 @@ This bundle was designed to just work out of the box. The only thing you have to
 ```yaml
 # app/config/config.yml
 
+# Telegram bot configuration:
 telegram_bot_api:
-    token: xxxxx:yyyyyyyyyyyyyyyyyyyy
-    bot_name : zzzzzzz
+    # Your bot token: (required)
+    token: 1234567:kqjlf213*****123
+    # Your bot username:
+    username: symfony_bot
+
+    # Development section:
+    development:
+        # Telegram user_id of developers accounts
+        developers_id: [1234567, 87654321]
+        # If this mode is enabled, the robot only responds to the developers
+        maintenance:
+            enable: true
+            text: "The robot is being repaired! Please come back later."
 ```
 
 If you want to use web-hook, just run tish command:
@@ -62,6 +74,16 @@ Wherever you have access to the service container :
     $user = $bot::getMe()->getResult();
 
 ?>
+```
+If you have Web Hook enabled, you can receive this response:
+```php
+$botHelper = $this->container->get('telegram_bot_api.helper');
+
+# return the response text:
+$botHelper->getMessage()->getText; 
+
+$ return the response the user id:
+$botHelper->getFrom()->getId();
 ```
 ## Next...
 
