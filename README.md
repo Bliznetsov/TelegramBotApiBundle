@@ -80,9 +80,9 @@ If you have Web Hook enabled, you can receive this response:
 $botHelper = $this->container->get('telegram_bot_api.helper');
 
 # return the response text:
-$botHelper->getMessage()->getText; 
+$botHelper->getMessage()->getText(); 
 
-$ return the response the user id:
+# return the response the user id:
 $botHelper->getFrom()->getId();
 ```
 ## Next...
