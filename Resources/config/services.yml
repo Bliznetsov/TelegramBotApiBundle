@@ -1,8 +1,8 @@
 services:
-    telegram_bot_api:
-        class: EricomGroup\TelegramBotApiBundle\TelegramBotApi
-        arguments: ['@service_container']
-
     telegram_bot_api.helper:
         class: EricomGroup\TelegramBotApiBundle\Service\BotHelper
+        arguments: ['@service_container']
+
+    telegram_bot_api:
+        class: EricomGroup\TelegramBotApiBundle\Service\Bot
         arguments: ['@service_container']
