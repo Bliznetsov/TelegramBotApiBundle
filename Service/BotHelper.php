@@ -8,6 +8,7 @@ use Longman\TelegramBot\Entities\Contact;
 use Longman\TelegramBot\Entities\Document;
 use Longman\TelegramBot\Entities\File;
 use Longman\TelegramBot\Entities\InlineQuery;
+use Longman\TelegramBot\Entities\Keyboard;
 use Longman\TelegramBot\Entities\Location;
 use Longman\TelegramBot\Entities\Message;
 use Longman\TelegramBot\Entities\MessageEntity;
@@ -20,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class BotHelper {
 	/**
-	 * @var object|\TelegramBotApiBundle\TelegramBotApi
+	 * @var Bot
 	 */
 	private $bot;
 
@@ -31,9 +32,29 @@ class BotHelper {
 	 *
 	 * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
 	 * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+	 * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
 	 */
 	public function __construct(ContainerInterface $container) {
 		$this->bot = $container->get('telegram_bot_api');
+
+		$config = $container->getParameter('telegram_bot_api.config');
+		if($config['development']['maintenance']['enable'])
+		{
+			if($this->getDecodeInput() !== null)
+			{
+				if(!in_array( $this->getFrom()->getId(), $this->bot->getDevelopers(), true ))
+				{
+					$this->bot::sendMessage( [
+						'chat_id'      => $this->getFrom()->getId(),
+						'text'         => $config['development']['maintenance']['text'],
+						'reply_markup' => Keyboard::remove(),
+						'parse_mode'   => 'Markdown'
+					] );
+					exit(200);
+				}
+			}
+		}
 	}
 
 	/**
