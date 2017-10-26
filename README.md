@@ -63,7 +63,6 @@ $ php bin/console telegram:set:webhook
 
 ## Usage
 
-
 Wherever you have access to the service container :
 ```php
 <?php
@@ -72,26 +71,35 @@ Wherever you have access to the service container :
 
     // test the API by calling getMe method
     $user = $bot::getMe()->getResult();
-
-?>
 ```
+
 If you have Web Hook enabled, you can receive this response:
 ```php
 $botHelper = $this->container->get('telegram_bot_api.helper');
 
-# return the response text:
-$botHelper->getMessage()->getText; 
+# get the text which was sent to the bot:
+$botHelper->getMessage()->getText(); 
 
-$ return the response the user id:
-$botHelper->getFrom()->getId();
+# get the chat_id which uniquely identifies this chat. 
+# You need this id in order to send messages back
+$chat_id = $botHelper->getFrom()->getId();
 ```
+
+And what you've been waiting for: sending a message back to the user:
+```php
+$bot::sendMessage([
+	'chat_id' => $chat_id,
+	'message' => 'I hear you loud and clear!'
+]);
+```
+
 ## Next...
 
-Please refer to [Telegram Bot API Official Document](https://core.telegram.org/bots/api) for getting infomration about available methods and other informations:
+Please refer to [Telegram Bot API Official Document](https://core.telegram.org/bots/api) for getting information about available methods and other informations.
 
 ## Troubleshooting
 
-If you did all the configurations correctly but still getting errors (Http error 500) even on getMe method, it might be because of SSL Verification. Please make sure you have up-to-date CA root certificate bundle to be used with cURL.
+If you did all the configurations correctly but still getting errors (Http error 500) even on getMe() method, it might be because of SSL Verification. Please make sure you have up-to-date CA root certificate bundle to be used with cURL.
 
 You can configure you CA root certificate bundle by:
 
@@ -99,6 +107,8 @@ You can configure you CA root certificate bundle by:
  2. Setting a path to it in your php.ini file, e.g. on Windows:
 
  `curl.cainfo=c:\php\cacert.pem`
+
+You can test your SSL-setup online with this handy webtool on: [SSL Labs](https://www.ssllabs.com/ssltest)
 
 ## License
 
