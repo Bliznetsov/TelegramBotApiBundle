@@ -9,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 abstract class BotController extends Controller
 {
-	use ControllerTrait;
-
 	/**
 	 * @return \EricomGroup\TelegramBotApiBundle\Service\Bot|object
 	 */
