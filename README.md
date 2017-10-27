@@ -92,7 +92,26 @@ $bot::sendMessage([
 	'message' => 'I hear you loud and clear!'
 ]);
 ```
+Also you can extend your controller from `BotController` like this:
+```php
+<?php
 
+class MessageController extends BotController
+{
+	/**
+	 * @Route("/")
+	 * @throws \Longman\TelegramBot\Exception\TelegramException
+ 	*/
+    public function indexAction()
+    {
+    	$this->bot()::sendMessage([
+    		'chat_id' => $this->botHelper()->getFrom()->getId(),
+    		'text' => 'great!'
+	    ]);
+    }
+}
+
+```
 ## Next...
 
 Please refer to [Telegram Bot API Official Document](https://core.telegram.org/bots/api) for getting information about available methods and other informations.
