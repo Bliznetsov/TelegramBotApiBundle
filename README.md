@@ -1,5 +1,7 @@
 TelegramBotApiBundle
 ===================
+[![Packagist](https://img.shields.io/packagist/dt/doctrine/orm.svg)](https://packagist.org/packages/ericomgroup/telegram-bot-api-bundle)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/ericomgroup/TelegramBotApiBundle/blob/master/LICENSE.md)
 
 A symfony wrapper bundle for  [Telegram Bot API](https://core.telegram.org/bots/api).
 
