@@ -2,11 +2,11 @@
   "name": "ericomgroup/telegram-bot-api-bundle",
   "type": "symfony-bundle",
   "description": "A simple wrapper for telegram-bot-api.",
-  "keywords": ["telegram", "bot", "api", "telegram-bot-api", "php", "symfony", "symfony2", "symfony3"],
+  "keywords": ["telegram", "bot", "api", "telegram-bot-api", "php", "symfony"],
   "homepage": "http://ericomgroup.com",
   "minimum-stability": "dev",
   "prefer-stable": true,
-  "version": "3.0.3",
+  "version": "4.0.0",
   "license": "MIT",
   "authors": [
     {
@@ -17,8 +17,9 @@
     }
   ],
   "require": {
-    "symfony/framework-bundle": ">=2.2",
-    "longman/telegram-bot": "*"
+    "php": ">=7.1",
+    "symfony/framework-bundle": "^3.4",
+    "longman/telegram-bot": "^0.51"
   },
   "autoload": {
     "psr-4": { "EricomGroup\\TelegramBotApiBundle\\": "" }
