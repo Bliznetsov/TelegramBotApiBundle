@@ -4,7 +4,6 @@ namespace EricomGroup\TelegramBotApiBundle\Service;
 
 use InvalidArgumentException;
 use Longman\TelegramBot\Exception\TelegramException;
-use Longman\TelegramBot\Request as BotRequest;
 use Longman\TelegramBot\Telegram;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\VarDumper\VarDumper;
@@ -99,8 +98,8 @@ class Bot
 
 	public function __call( $name, $arguments)
 	{
-		$botRequest = new BotRequest();
-		$result =  call_user_func_array([$botRequest, $name], $arguments);
+		$result =  call_user_func_array(['Longman\TelegramBot\Request', $name], $arguments);
+		var_dump($result);
 
 		if(!$result->ok)
 		{
