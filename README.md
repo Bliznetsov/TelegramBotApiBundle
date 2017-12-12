@@ -72,7 +72,7 @@ Wherever you have access to the service container :
     $bot = $this->container->get('telegram_bot_api');
 
     // test the API by calling getMe method
-    $user = $bot::getMe()->getResult();
+    $user = $bot->getMe()->getResult();
 ```
 
 If you have Web Hook enabled, you can receive this response:
@@ -89,7 +89,7 @@ $chat_id = $botHelper->getFrom()->getId();
 
 And what you've been waiting for: sending a message back to the user:
 ```php
-$bot::sendMessage([
+$bot->sendMessage([
 	'chat_id' => $chat_id,
 	'message' => 'I hear you loud and clear!'
 ]);
@@ -106,7 +106,7 @@ class MessageController extends BotController
  	*/
     public function indexAction()
     {
-    	$this->bot()::sendMessage([
+    	$this->bot()->sendMessage([
     		'chat_id' => $this->botHelper()->getFrom()->getId(),
     		'text' => 'great!'
 	    ]);
