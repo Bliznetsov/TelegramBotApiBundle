@@ -37,17 +37,17 @@ class BotHelper {
 	 */
 	public function __construct(ContainerInterface $container) {
 		$this->bot = $container->get('telegram_bot_api');
+		$this->config = $container->getParameter('telegram_bot_api.config');
 
-		$config = $container->getParameter('telegram_bot_api.config');
-		if($config['development']['maintenance']['enable'])
+		if($this->config['development']['maintenance']['enable'])
 		{
 			if($this->getDecodeInput() !== null)
 			{
 				if(!in_array( $this->getFrom()->getId(), $this->bot->getDevelopers(), true ))
 				{
-					$this->bot::sendMessage( [
+					$this->bot->sendMessage( [
 						'chat_id'      => $this->getFrom()->getId(),
-						'text'         => $config['development']['maintenance']['text'],
+						'text'         => $this->config['development']['maintenance']['text'],
 						'reply_markup' => Keyboard::remove(),
 						'parse_mode'   => 'Markdown'
 					] );
@@ -63,7 +63,14 @@ class BotHelper {
 	 */
 	public function getDecodeInput()
 	{
-		return json_decode($this->bot::getInput(), 1);
+		$input = file_get_contents('php://input');
+
+		// Make sure we have a string to work with.
+		if (!is_string($input)) {
+			throw new TelegramException('Input must be a string!');
+		}
+
+		return json_decode($input, true);
 	}
 
 	/**

@@ -71,6 +71,7 @@ use Symfony\Component\VarDumper\VarDumper;
  * @method ServerResponse sendMessage(array $data)             Use this method to send text messages. On success, the sent Message is returned.
  * @method ServerResponse encodeFile(string $file)             Encode file.
  * @method ServerResponse downloadFile(\Longman\TelegramBot\Entities\File $file) Download file.
+ * @method ServerResponse getInput() Set input from custom input or stdin and return it.
  */
 class Bot
 {
@@ -99,8 +100,6 @@ class Bot
 	public function __call( $name, $arguments)
 	{
 		$result =  call_user_func_array(['Longman\TelegramBot\Request', $name], $arguments);
-		var_dump($result);
-
 		if(!$result->ok)
 		{
 			throw new TelegramException($result->description);
