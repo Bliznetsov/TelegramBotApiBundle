@@ -100,7 +100,7 @@ class Bot
 	public function __call( $name, $arguments)
 	{
 		$result =  call_user_func_array(['Longman\TelegramBot\Request', $name], $arguments);
-		if(!$result->ok)
+		if(property_exists($result, 'ok') && !$result->ok)
 		{
 			throw new TelegramException($result->description);
 		}
