@@ -1,0 +1,13 @@
+{
+    "copy-from-recipe": {
+        "token": "1234567:kqjlf213*****123",
+        "username": "bot_username",
+        "development": {
+        	"developers_id" : [1234567, 87654321],
+        	"maintenance" : {
+        		"enable" : true,
+        		"text" : "The robot is being repaired! Please come back later."
+        	}
+        }
+    },
+}
