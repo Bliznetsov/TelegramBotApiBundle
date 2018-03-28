@@ -8,3 +8,11 @@ services:
         class: EricomGroup\TelegramBotApiBundle\Service\Bot
         arguments: ['@service_container']
         public: true
+
+    command.telegram.webhook.set:
+        class: EricomGroup\TelegramBotApiBundle\Command\TelegramWebhookSetCommand
+        tags: [console.command]
+
+    command.telegram.webhook.info:
+            class: EricomGroup\TelegramBotApiBundle\Command\TelegramWebhookInfoCommand
+            tags: [console.command]
