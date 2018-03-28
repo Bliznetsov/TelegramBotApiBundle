@@ -76,9 +76,14 @@ use Symfony\Component\VarDumper\VarDumper;
 class Bot
 {
 	/**
-	 * @var
+	 * @var array
 	 */
 	private $config;
+
+    /**
+     * @var Telegram
+     */
+	private $telegram;
 
 	/**
 	 * Bot constructor.
@@ -93,7 +98,6 @@ class Bot
 	public function __construct(ContainerInterface $container)
 	{
 		$this->config = $container->getParameter('telegram_bot_api.config');
-
 		$this->telegram = new Telegram($this->config['token'], $this->config['username']);
 	}
 
@@ -150,13 +154,24 @@ class Bot
 	 *
 	 * @return Telegram
 	 */
-	public function changeBot($token, $username = null)
+	public function createNewBot($token, $username = null)
 	{
 		if(empty($token))
 			throw new InvalidArgumentException('$token can not be null.');
 		else
 			return new Telegram($token, $username);
 	}
+
+	public function changeBot($token, $username = null)
+    {
+        if(empty($token)) {
+            throw new InvalidArgumentException('$token can not be null.');
+        }
+
+        $this->telegram = new Telegram($token, $username);
+
+        return true;
+    }
 
 	/**
 	 * @return mixed
