@@ -11,8 +11,10 @@ services:
 
     command.telegram.webhook.set:
         class: EricomGroup\TelegramBotApiBundle\Command\TelegramWebhookSetCommand
+        arguments: ['@service_container']
         tags: [console.command]
 
     command.telegram.webhook.info:
-            class: EricomGroup\TelegramBotApiBundle\Command\TelegramWebhookInfoCommand
-            tags: [console.command]
+        class: EricomGroup\TelegramBotApiBundle\Command\TelegramWebhookInfoCommand
+        arguments: ['@service_container']
+        tags: [console.command]
