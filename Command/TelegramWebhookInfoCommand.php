@@ -40,18 +40,26 @@ class TelegramWebhookInfoCommand extends Command
 	    {
 		    $result = (array) $result->result;
 
+            $io->success('Information recived');
+
 		    $table = new Table($output);
-		    $table->setHeaders(['Url', $result['url']])
+            $table->setHeaders(['Field', 'Value'])
 		          ->setRows([
+                      ['URL', $result['url'] ? $result['url'] : 'Empty'],
+                      new TableSeparator(),
 			          ['Has custom certificate', $result['has_custom_certificate'] ? 'Yes' : 'No'],
 			          new TableSeparator(),
-			          ['Pending update count', $result['pending_update_count']],
-			          new TableSeparator(),
-			          ['Max connections', $result['max_connections']],
+                      ['Pending update count', isset($result['pending_update_count']) ? $result['pending_update_count'] : 'Empty'],
+                      new TableSeparator(),
+                      ['Last error date', isset($result['last_error_date']) ? $result['last_error_date'] : 'Empty'],
+                      new TableSeparator(),
+                      ['Last error message', isset($result['last_error_message']) ? $result['last_error_message'] : 'Empty'],
+                      new TableSeparator(),
+                      ['Max connections', isset($result['max_connections']) ? $result['max_connections'] : 'Empty'],
+                      new TableSeparator(),
+                      ['Allowed updates', isset($result['allowed_updates']) ? $result['allowed_updates'] : 'All'],
 		          ]);
 		    $table->render();
-
-		    $io->success('Information recived');
 	    }
 	    else
 	    {
