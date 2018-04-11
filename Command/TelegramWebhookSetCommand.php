@@ -27,27 +27,34 @@ class TelegramWebhookSetCommand extends Command
         $this
             ->setName('telegram:webhook:set')
             ->setDescription('Set Bot webhook')
-            ->addArgument('url', InputArgument::OPTIONAL, 'Url to set webhook')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
     	$io = new SymfonyStyle($input, $output);
+    	$data = [];
 
-    	$url = $input->getArgument('url');
-    	if(empty($url))
-	    {
-		    $question = new Question("Web hook url");
-		    $url = $io->askQuestion($question);
-	    }
+        $question = new Question("Web hook URL");
+        $data['url'] = $io->askQuestion($question);
 
-	    $result = $this->container->get('telegram_bot_api')->setWebhook(['url' => $url]);
-	    if($result->isOk())
-	    {
+        $question = new Question("Max connections");
+        $data['max_connections'] = $io->askQuestion($question);
+
+        $question = new Question("Allowed updates");
+        $data['allowed_updates'] = $io->askQuestion($question);
+
+        if($data['allowed_updates'] == ''){
+            unset($data['allowed_updates']);
+        }
+        if($data['max_connections'] == ''){
+            unset($data['max_connections']);
+        }
+
+	    $result = $this->container->get('telegram_bot_api')->setWebhook($data);
+
+	    if($result->isOk()) {
 	    	$io->success($result->getRawData()['description']);
-	    }
-	    else
-	    {
+	    } else {
 	    	$io->error('Web Hook failed');
 	    }
     }
